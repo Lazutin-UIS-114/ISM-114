@@ -18,9 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="complex_number.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Complex.h">
+    <ClInclude Include="complex_number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
