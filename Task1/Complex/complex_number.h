@@ -1,6 +1,23 @@
 #pragma once
 #include <string>
 
+class complex_number;
+
+/**
+ * \brief Сравнение двух комплексных чисел
+ * \param lh Одно комплексное число
+ * \param rh другое комплексное число
+ * \return true, если равны, false, если не равно
+ */
+bool operator==(const complex_number& lh, const complex_number& rh);
+
+/**
+ * \brief Метод преобразования в широкую строку комплексного числа
+ * \param number комплексное число
+ * \return wide string
+ */
+std::wstring ToString(const complex_number& number);
+
 /**
  * \brief Класс, описывающий работу с комплексным числом *
  */
@@ -33,6 +50,12 @@ public:
      * \brief Конструктор копирования
      */
     complex_number(const complex_number& other);
+
+    /**
+     * \brief Перемещающий конструктор
+     * \param other Другой вектор
+     */
+    complex_number(complex_number&& other) = default;
 
     /**
      * \brief Деструктор по умолчанию
@@ -70,10 +93,17 @@ public:
     std::string get_algebra_view() const;
 
     /**
+     * \brief Метод показа комплексного числа в алгебраическом виде
+     * \return алгебраический вид комплексного числа для wide string
+     */
+    std::wstring get_wide_algebra_view() const;
+
+    /**
      * \brief Метод показа комплексного числа в тригонометрическом виде
      * \return тригонометрический вид комплексного числа
      */
     std::string get_trigonometric_view() const;
+
 
     /**
      * \brief Метод показа комплексного числа в экспоненциальном виде
@@ -85,33 +115,88 @@ public:
      * \brief Расчет комплексно сопряженного числа
      * \return новое комплексно сопряженное число
      */
-    complex_number& get_conjugate() const;
+    complex_number get_conjugate() const;
 
     /**
      * \brief Сложение с другим комплексным числом
      * \param other другое комплексное число
      * \return новое комплексное число
      */
-    complex_number& add(const complex_number& other) const;
+    complex_number add(const complex_number& other) const;
 
     /**
      * \brief Вычитание другого комплексного числа
      * \param other другое комплексное число
      * \return новое комплексное число
      */
-    complex_number& sub(const complex_number& other) const;
+    complex_number sub(const complex_number& other) const;
 
     /**
      * \brief Умножение на другое комплексное число
      * \param other другое комплексное число
      * \return новое комплексное число
      */
-    complex_number& mul(const complex_number& other) const;
+    complex_number mul(const complex_number& other) const;
 
     /**
      * \brief Деление на другое комплексное число
      * \param other другое комплексное число
      * \return новое комплексное число
      */
-    complex_number& div(const complex_number& other) const;
+    complex_number div(const complex_number& other) const;
+
+    /**
+     * \brief Сравнение двух комплексных чисел
+     * \param other другое комплексное число
+     * \return true, если равны, false, если не равно
+     */
+    bool are_equal(const complex_number& other) const;
+
+    /**
+     * \brief Сравнение двух комплексных чисел
+     * \param other другое комплексное число
+     * \return false, если равны, true, если не равно
+     */
+    bool are_not_equal(const complex_number& other) const;
+
+    /**
+     * \brief Сравнение двух комплексных чисел
+     * \param lh Одно комплексное число
+     * \param rh другое комплексное число
+     * \return true, если равны, false, если не равно
+     */
+    friend bool operator==(const complex_number& lh, const complex_number& rh);
+
+    /**
+ * \brief Сравнение двух комплексных чисел
+ * \param lh Одно комплексное число
+ * \param rh другое комплексное число
+ * \return false, если равны, true, если не равно
+ */
+    friend bool operator!=(const complex_number& lh, const complex_number& rh);
+
+
+
+    /**
+     * \brief Метод строкового представления
+     * \param number комплексное число
+     * \return wide string
+     */
+    static std::wstring to_wide_string(complex_number& number);
+
+    /**
+     * \brief Оператор вывода в поток
+     * \param out Поток вывода
+     * \param number комплексное число
+     * \return Поток
+     */
+    friend std::ostream& operator<< (std::ostream& out, const complex_number& number);
+
+    /**
+     * \brief Оператор вывода в поток
+     * \param out Поток вывода
+     * \param number комплексное число
+     * \return Поток
+     */
+    friend std::wostream& operator<< (std::wostream& out, const complex_number& number);
 };
